@@ -1,9 +1,10 @@
 const express = require('express');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const app = express();
 const snapsave = require('./snapsave-downloader');
-const port = 3000;
+
+const app = express();
+const port = process.env.PORT || 3000; // Use the PORT environment variable
 
 app.get('/', (req, res) => {
   res.json({ message: 'Hello World!' });
@@ -26,5 +27,7 @@ app.get('/igdl', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server is running on port ${port}`);
 });
+
+module.exports = app; // Export the app for Vercel
